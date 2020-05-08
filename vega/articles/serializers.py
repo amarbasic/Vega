@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Article, Tag
+from .models import Article
 
 
 class ArticleSerializer(serializers.ModelSerializer):
@@ -34,4 +34,3 @@ class ArticleSerializer(serializers.ModelSerializer):
             article.tags.add(tag)
 
         return article
-

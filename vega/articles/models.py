@@ -26,7 +26,6 @@ class Tag(BaseModel):
     slug = models.SlugField(db_index=True, unique=True)
 
 
-
 class ArticleTag(BaseModel):
     article = models.ForeignKey(
         'articles.Article', on_delete=models.CASCADE
