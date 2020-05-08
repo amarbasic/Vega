@@ -1,15 +1,21 @@
 FROM python:3.6
 
-RUN pip3 install pipenv
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
 WORKDIR /usr/src/app
 
-COPY Pipfile ./
-COPY Pipfile.lock ./
+RUN pip install --upgrade pip
+RUN pip install pipenv
+COPY Pipfile Pipfile.lock ./
+RUN pipenv install --system --deploy
 
 RUN set -ex && pipenv install --deploy --system
 
 COPY . .
+
+RUN python manage.py compilemessages
+RUN python manage.py collectstatic
 
 EXPOSE 8000
 

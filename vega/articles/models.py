@@ -1,9 +1,9 @@
 from django.db import models
 
-from vega.common.models import TimestampedMixin
+from vega.common.models import BaseModel
 
 
-class Article(TimestampedMixin):
+class Article(BaseModel):
     slug = models.SlugField(db_index=True, max_length=255, unique=True)
     title = models.CharField(db_index=True, max_length=255)
 
@@ -13,7 +13,7 @@ class Article(TimestampedMixin):
     tags = models.ManyToManyField('articles.Tag', through='ArticleTag')
 
 
-class Comment(TimestampedMixin):
+class Comment(BaseModel):
     body = models.TextField()
 
     article = models.ForeignKey(
@@ -21,13 +21,13 @@ class Comment(TimestampedMixin):
     )
 
 
-class Tag(TimestampedMixin):
+class Tag(BaseModel):
     tag = models.CharField(max_length=255)
     slug = models.SlugField(db_index=True, unique=True)
 
 
 
-class ArticleTag(TimestampedMixin):
+class ArticleTag(BaseModel):
     article = models.ForeignKey(
         'articles.Article', on_delete=models.CASCADE
     )

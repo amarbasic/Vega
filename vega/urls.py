@@ -18,5 +18,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('vega.articles.urls', namespace='articles')),
+    path('api/v1/', include('vega.articles.urls', namespace='articles')),
 ]

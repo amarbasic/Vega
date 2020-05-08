@@ -1,4 +1,4 @@
 Docs
 ============
 
-Documentation will be placed in this.
+Documentation will be placed here.
